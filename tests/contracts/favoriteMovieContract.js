@@ -38,7 +38,11 @@ const itActsAsFavoriteMovieModel = (favoriteMovie) => {
 
     await favoriteMovie.deleteMovie(4);
 
-    expect(await favoriteMovie.getAllMovies()).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }]);
+    expect(await favoriteMovie.getAllMovies()).toEqual([
+      { id: 1 },
+      { id: 2 },
+      { id: 3 },
+    ]);
   });
 
   it('should be able to search for movies', async () => {

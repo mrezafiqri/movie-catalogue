@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const assert = require('assert');
 
 Feature('Liking Movies');
@@ -9,8 +10,6 @@ Before(({ I }) => {
 Scenario('showing empty liked movies', ({ I }) => {
   I.seeElement('#query');
 
-  // I.seeElement('.query'); --> menyebabkan error
-
   I.see('Tidak ada film untuk ditampilkan', '.movie-item__not__found');
 });
 
@@ -18,8 +17,6 @@ Scenario('liking one movie', async ({ I }) => {
   I.see('Tidak ada film untuk ditampilkan', '.movie-item__not__found');
 
   I.amOnPage('/');
-
-  // pause();
 
   I.seeElement('.movie__title a');
   const firstMovie = locate('.movie__title a').first();
@@ -36,7 +33,7 @@ Scenario('liking one movie', async ({ I }) => {
   assert.strictEqual(firstMovieTitle, likedMovieTitle);
 });
 
-Scenario('searching movies', async ({ I }) => {
+Scenario('Searching movies', async ({ I }) => {
   I.see('Tidak ada film untuk ditampilkan', '.movie-item__not__found');
 
   I.amOnPage('/');
@@ -44,7 +41,6 @@ Scenario('searching movies', async ({ I }) => {
   I.seeElement('.movie__title a');
 
   const titles = [];
-
   // eslint-disable-next-line no-plusplus
   for (let i = 1; i <= 3; i++) {
     I.click(locate('.movie__title a').at(i));
@@ -54,7 +50,6 @@ Scenario('searching movies', async ({ I }) => {
 
     // eslint-disable-next-line no-await-in-loop
     titles.push(await I.grabTextFrom('.movie__title'));
-
     I.amOnPage('/');
   }
 
@@ -64,6 +59,7 @@ Scenario('searching movies', async ({ I }) => {
   const visibleLikedMovies = await I.grabNumberOfVisibleElements('.movie-item');
   assert.strictEqual(titles.length, visibleLikedMovies);
 
+  // JavaScript -> av = potongan judul
   const searchQuery = titles[1].substring(1, 3);
 
   I.fillField('#query', searchQuery);

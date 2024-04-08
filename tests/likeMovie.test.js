@@ -1,4 +1,3 @@
-import { spyOn } from 'jest-mock';
 import FavoriteMovieIdb from '../src/scripts/data/favorite-movie-idb';
 import * as TestFactories from './helpers/testFactories';
 
@@ -9,35 +8,33 @@ describe('Liking A Movie', () => {
 
   beforeEach(() => {
     addLikeButtonContainer();
-
-    spyOn(FavoriteMovieIdb, 'searchMovies');
   });
 
-  it('should show the like button when the movie has not been liked before', async () => {
+  it('Should show the like button when the movie has not ben liked before', async () => {
     await TestFactories.createLikeButtonPresenterWithMovie({ id: 1 });
 
     expect(document.querySelector('[aria-label="like this movie"]')).toBeTruthy();
   });
 
-  it('should not show the unlike button when the movie has not been liked before', async () => {
+  it('Should not show the unlike when the movie has not been liked before', async () => {
     await TestFactories.createLikeButtonPresenterWithMovie({ id: 1 });
 
     expect(document.querySelector('[aria-label="unlike this movie"]')).toBeFalsy();
   });
 
-  it('should be able to like the movie', async () => {
+  it('Should be able to like the movie', async () => {
     await TestFactories.createLikeButtonPresenterWithMovie({ id: 1 });
 
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));
 
-    // Memastikan film berhasil disukai
+    // Memastikan film berhasil di sukai
     const movie = await FavoriteMovieIdb.getMovie(1);
     expect(movie).toEqual({ id: 1 });
 
     await FavoriteMovieIdb.deleteMovie(1);
   });
 
-  it('should not add a movie again when its already liked', async () => {
+  it('Should not add a movie again when its already liked', async () => {
     await TestFactories.createLikeButtonPresenterWithMovie({ id: 1 });
 
     // Tambahkan film dengan ID 1 ke daftar film yang disukai
@@ -46,13 +43,14 @@ describe('Liking A Movie', () => {
     // Simulasikan pengguna menekan tombol suka film
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));
 
-    // Tidak ada film yang ganda
+    // Tidak ada film yang ganda / double
     expect(await FavoriteMovieIdb.getAllMovies()).toEqual([{ id: 1 }]);
 
     await FavoriteMovieIdb.deleteMovie(1);
   });
 
-  it('should not add a movie when it has no id', async () => {
+  // Menggunakan metode xit, bukan it, untuk menonaktifkan sebuah test case
+  it('Should not add a movie when it has no id', async () => {
     await TestFactories.createLikeButtonPresenterWithMovie({});
 
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));

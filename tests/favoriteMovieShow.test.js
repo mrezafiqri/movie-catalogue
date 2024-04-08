@@ -14,7 +14,7 @@ describe('Showing all favorite movies', () => {
   });
 
   describe('When no movies have been liked', () => {
-    it('should render the information that no movies have been liked', () => {
+    it('Should render the information that no movies have been liked', () => {
       const favoriteMovies = {
         getAllMovies: jest.fn().mockImplementation(() => []),
       };
@@ -30,11 +30,12 @@ describe('Showing all favorite movies', () => {
       expect(document.querySelectorAll('.movie-item__not__found').length).toEqual(1);
     });
 
-    it('should ask for the favorite movies', () => {
+    it('Should ask for the favorite movies', () => {
       const favoriteMovies = {
         getAllMovies: jest.fn().mockImplementation(() => []),
       };
 
+      // eslint-disable-next-line no-new
       new FavoriteMovieShowPresenter({
         view,
         favoriteMovies,
@@ -46,11 +47,13 @@ describe('Showing all favorite movies', () => {
 
   describe('When favorite movies exist', () => {
     it('should show the movies', (done) => {
-      document.getElementById('movies').addEventListener('movies:updated', () => {
-        expect(document.querySelectorAll('.movie-item').length).toEqual(2);
+      document
+        .getElementById('movies')
+        .addEventListener('movies:updated', () => {
+          expect(document.querySelectorAll('.movie-item').length).toEqual(2);
 
-        done();
-      });
+          done();
+        });
 
       const favoriteMovies = {
         getAllMovies: jest.fn().mockImplementation(() => [
@@ -69,6 +72,7 @@ describe('Showing all favorite movies', () => {
         ]),
       };
 
+      // eslint-disable-next-line no-new
       new FavoriteMovieShowPresenter({
         view,
         favoriteMovies,

@@ -5,7 +5,7 @@
     "node": true,
     "jest": true
   },
-  "extends": ["airbnb-base", "plugin:codeceptjs/recommended"],
+  "extends": ["airbnb-base"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": 11,

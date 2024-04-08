@@ -1,12 +1,13 @@
 import { createMovieItemTemplate } from '../../templates/template-creator';
 
+/* eslint-disable class-methods-use-this */
 class FavoriteMovieView {
   getTemplate() {
     return `
       <div class="content">
         <input id="query" type="text">
         <h2 class="content__heading">Your Liked Movie</h2>
-  
+
         <div id="movies" class="movies">
         </div>
       </div>
@@ -19,10 +20,17 @@ class FavoriteMovieView {
     });
   }
 
+  showMovies(movies) {
+    this.showFavoriteMovies(movies);
+  }
+
   showFavoriteMovies(movies) {
     let html;
     if (movies.length) {
-      html = movies.reduce((carry, movie) => carry.concat(createMovieItemTemplate(movie)), '');
+      html = movies.reduce(
+        (carry, movie) => carry.concat(createMovieItemTemplate(movie)),
+        '',
+      );
     } else {
       html = this._getEmptyMovieTemplate();
     }

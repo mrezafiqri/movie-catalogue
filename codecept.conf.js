@@ -20,13 +20,10 @@ exports.config = {
   include: {
     I: './steps_file.js',
   },
-  name: 'movie-catalogue-pushnotif-for-e2e-demo',
+  name: 'P02_movie-catalogue-jest-configured',
   plugins: {
-    retryFailedStep: {
-      enabled: true,
-    },
     screenshotOnFail: {
-      enabled: true,
+      enabled: false,
     },
   },
 };

@@ -3,14 +3,15 @@ class FavoriteMovieShowPresenter {
     this._view = view;
     this._favoriteMovies = favoriteMovies;
 
-    this._showFavoriteMovies();
+    this._showFavortieMovies();
   }
 
-  async _showFavoriteMovies() {
+  async _showFavortieMovies() {
     const movies = await this._favoriteMovies.getAllMovies();
     this._displayMovies(movies);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   _displayMovies(movies) {
     this._view.showFavoriteMovies(movies);
   }

@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable consistent-return */
 import { itActsAsFavoriteMovieModel } from './contracts/favoriteMovieContract';
 
 let favoriteMovies = [];
@@ -8,7 +10,6 @@ const FavoriteMovieArray = {
       return;
     }
 
-    // eslint-disable-next-line consistent-return, , eqeqeq
     return favoriteMovies.find((movie) => movie.id == id);
   },
 
@@ -33,13 +34,11 @@ const FavoriteMovieArray = {
   deleteMovie(id) {
     // cara boros menghapus film dengan meng-copy film yang ada
     // kecuali film dengan id == id
-
-    // eslint-disable-next-line eqeqeq
     favoriteMovies = favoriteMovies.filter((movie) => movie.id != id);
   },
 
-  async searchMovies(query) {
-    return (await this.getAllMovies()).filter((movie) => {
+  searchMovies(query) {
+    return this.getAllMovies().filter((movie) => {
       const loweredCaseMovieTitle = (movie.title || '-').toLowerCase();
       const jammedMovieTitle = loweredCaseMovieTitle.replace(/\s/g, '');
 

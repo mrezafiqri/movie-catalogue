@@ -2,11 +2,15 @@ class FavoriteMovieSearchPresenter {
   constructor({ favoriteMovies, view }) {
     this._favoriteMovies = favoriteMovies;
     this._view = view;
-
     this._listenToSearchRequestByUser();
   }
 
   _listenToSearchRequestByUser() {
+    // this._queryElement = document.getElementById('query');
+    // this._queryElement.addEventListener('change', (event) => {
+    //   this._searchMovies(event.target.value);
+    // });
+
     this._view.runWhenUserIsSearching((latestQuery) => {
       this._searchMovies(latestQuery);
     });
@@ -25,6 +29,7 @@ class FavoriteMovieSearchPresenter {
     this._showFoundMovies(foundMovies);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   _showFoundMovies(movies) {
     this._view.showFavoriteMovies(movies);
   }
