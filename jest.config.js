@@ -9,6 +9,7 @@ const config = {
     '**/tests/**/*.test.[jt]s?(x)',
   ],
 
+  // eslint-disable-next-line max-len
   // The paths to modules that run some code to configure or set up the testing environment before each test
   setupFiles: ['fake-indexeddb/auto', 'dotenv/config'],
 
